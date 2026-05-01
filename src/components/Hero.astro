@@ -26,21 +26,21 @@ import { Icon } from 'astro-icon/components';
       <p class="text-lg md:text-xl text-[var(--color-muted)] mb-10 max-w-2xl reveal">
         Професионален детайлинг, полиране и пране на седалки. Качество, на което можеш да разчиташ — за всеки автомобил.
       </p>
-      <div class="flex flex-wrap gap-4 reveal">
-        <a href="#services" class="btn-primary">
-          <Icon name="lucide:sparkles" class="w-5 h-5" />
-          Виж услугите
+      <div class="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4 reveal">
+        <a href="#services" class="btn-primary justify-center whitespace-nowrap">
+          <Icon name="lucide:sparkles" class="w-5 h-5 flex-shrink-0" />
+          <span>Виж услугите</span>
         </a>
-        <a href="tel:+359988825799" class="btn-secondary">
-          <Icon name="lucide:phone" class="w-5 h-5" />
-          Обади се сега
+        <a href="tel:+359988825799" class="btn-secondary justify-center whitespace-nowrap">
+          <Icon name="lucide:phone" class="w-5 h-5 flex-shrink-0" />
+          <span>Обади се сега</span>
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <a href="#services" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors animate-bounce">
+  <!-- Scroll indicator (само на desktop) -->
+  <a href="#services" class="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors animate-bounce">
     <Icon name="lucide:chevron-down" class="w-8 h-8" />
   </a>
 </section>
