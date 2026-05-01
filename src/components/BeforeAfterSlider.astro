@@ -1,0 +1,18 @@
+---
+interface Props {
+  before: string;
+  after: string;
+  alt: string;
+}
+
+const { before, after, alt } = Astro.props;
+---
+
+<img-comparison-slider class="block w-full rounded-xl overflow-hidden aspect-[3/2] bg-[var(--color-bg)]">
+  <img slot="first" src={before} alt={`${alt} — преди`} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+  <img slot="second" src={after} alt={`${alt} — след`} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+</img-comparison-slider>
+
+<script>
+  import 'img-comparison-slider';
+</script>

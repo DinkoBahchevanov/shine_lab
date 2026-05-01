@@ -1,0 +1,28 @@
+---
+import ServiceCard from './ServiceCard.astro';
+import services from '../data/services.json';
+---
+
+<section id="services" class="section">
+  <div class="container-narrow">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="text-[var(--color-accent)] font-medium mb-3 reveal">Какво предлагаме</p>
+      <h2 class="heading-section reveal">
+        Услуги за <span class="heading-accent">всеки автомобил</span>
+      </h2>
+      <p class="text-[var(--color-muted)] reveal">
+        От бързо външно измиване до пълен detailing с керамично покритие — имаме решение за всяко състояние и бюджет.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map((service) => (
+        <ServiceCard
+          icon={service.icon}
+          title={service.title}
+          description={service.description}
+        />
+      ))}
+    </div>
+  </div>
+</section>

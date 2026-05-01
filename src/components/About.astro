@@ -1,0 +1,55 @@
+---
+const stats = [
+  { value: '100+', label: 'Обработени автомобила' },
+  { value: '2+', label: 'Години опит' },
+  { value: '100%', label: 'Доволни клиенти' },
+];
+---
+
+<section id="about" class="section bg-[var(--color-surface)]/30">
+  <div class="container-narrow">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="reveal">
+        <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-[var(--color-surface)] border border-[var(--color-border)]">
+          <img
+            src="/images/about/Собственик-2.jpg"
+            alt="Собственикът на Shine Lab"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div>
+        <p class="text-[var(--color-accent)] font-medium mb-3 reveal">За нас</p>
+        <h2 class="heading-section reveal">
+          Страст към <span class="heading-accent">детайла</span>
+        </h2>
+        <div class="space-y-4 text-[var(--color-muted)] leading-relaxed mb-10">
+          <p class="reveal">
+            Shine Lab е резултат от години работа с автомобили и фокус върху качеството. Започнахме като ентусиасти и днес сме доверен партньор за стотици клиенти.
+          </p>
+          <p class="reveal">
+            Използваме само професионални препарати и техники, за да върнем оригиналния блясък на твоята кола — без значение от марката или състоянието ѝ.
+          </p>
+          <p class="reveal">
+            Всеки автомобил минава през индивидуална оценка преди работа. Не работим с шаблони — работим с детайли.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4">
+          {stats.map((stat) => (
+            <div class="text-center reveal">
+              <div class="text-3xl md:text-4xl font-extrabold text-[var(--color-accent)]">
+                {stat.value}
+              </div>
+              <div class="text-xs md:text-sm text-[var(--color-muted)] mt-1">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

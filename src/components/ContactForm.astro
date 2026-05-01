@@ -1,0 +1,79 @@
+---
+import services from '../data/services.json';
+---
+
+<form id="contact-form" class="space-y-4">
+  <div class="grid sm:grid-cols-2 gap-4">
+    <div>
+      <label for="name" class="block text-sm font-medium mb-2">Име *</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        class="w-full px-4 py-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg focus:border-[var(--color-accent)] focus:outline-none transition-colors"
+      />
+    </div>
+    <div>
+      <label for="phone" class="block text-sm font-medium mb-2">Телефон *</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        required
+        class="w-full px-4 py-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg focus:border-[var(--color-accent)] focus:outline-none transition-colors"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="service" class="block text-sm font-medium mb-2">Тип услуга</label>
+    <select
+      id="service"
+      name="service"
+      class="w-full px-4 py-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg focus:border-[var(--color-accent)] focus:outline-none transition-colors"
+    >
+      <option value="">— Избери услуга —</option>
+      {services.map((s) => (
+        <option value={s.id}>{s.title}</option>
+      ))}
+      <option value="other">Друго / Не съм сигурен</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium mb-2">Съобщение</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="4"
+      class="w-full px-4 py-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg focus:border-[var(--color-accent)] focus:outline-none transition-colors resize-none"
+    ></textarea>
+  </div>
+
+  <button type="submit" class="btn-primary w-full justify-center">
+    Изпрати запитване
+  </button>
+
+  <p id="form-status" class="text-sm text-center hidden"></p>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!status) return;
+
+    status.classList.remove('hidden', 'text-[var(--color-accent)]', 'text-red-400');
+    status.textContent = 'Изпращане...';
+
+    // TODO: Свържи с реален backend (Cloudflare Worker, Formspree, или Netlify Forms)
+    setTimeout(() => {
+      status.textContent = 'Благодарим! Ще се свържем с теб скоро.';
+      status.classList.add('text-[var(--color-accent)]');
+      form.reset();
+    }, 800);
+  });
+</script>

@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Gallery from '../components/Gallery.astro';
+import Pricing from '../components/Pricing.astro';
+import About from '../components/About.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Location from '../components/Location.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout>
+  <Navbar />
+  <main>
+    <Hero />
+    <Services />
+    <Gallery />
+    <Pricing />
+    <About />
+    <Testimonials />
+    <Location />
+    <Contact />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Reveal анимации
+  document.querySelectorAll<HTMLElement>('.reveal').forEach((el) => {
+    gsap.fromTo(
+      el,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+  });
+
+  // Parallax на hero фоновата снимка
+  const parallaxEl = document.querySelector<HTMLElement>('[data-parallax]');
+  if (parallaxEl) {
+    gsap.to(parallaxEl, {
+      yPercent: 30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: parallaxEl,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+  }
+</script>

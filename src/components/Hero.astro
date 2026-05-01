@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+  <!-- Фонова снимка -->
+  <div class="absolute inset-0 z-0">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/images/hero/hero-car.webp');"
+      data-parallax
+    ></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[var(--color-bg)]/60 via-[var(--color-bg)]/70 to-[var(--color-bg)]"></div>
+  </div>
+
+  <!-- Съдържание -->
+  <div class="container-narrow relative z-10 pt-24 pb-16">
+    <div class="max-w-3xl">
+      <p class="text-[var(--color-accent)] font-medium mb-4 reveal">
+        Shine Lab — Auto Detailing
+      </p>
+      <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 reveal">
+        Връщаме <span class="text-[var(--color-accent)]">блясъка</span><br />
+        на твоята кола
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--color-muted)] mb-10 max-w-2xl reveal">
+        Професионален детайлинг, полиране и пране на седалки. Качество, на което можеш да разчиташ — за всеки автомобил.
+      </p>
+      <div class="flex flex-wrap gap-4 reveal">
+        <a href="#services" class="btn-primary">
+          <Icon name="lucide:sparkles" class="w-5 h-5" />
+          Виж услугите
+        </a>
+        <a href="tel:+359988825799" class="btn-secondary">
+          <Icon name="lucide:phone" class="w-5 h-5" />
+          Обади се сега
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <a href="#services" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors animate-bounce">
+    <Icon name="lucide:chevron-down" class="w-8 h-8" />
+  </a>
+</section>

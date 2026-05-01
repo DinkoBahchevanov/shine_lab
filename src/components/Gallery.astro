@@ -1,0 +1,68 @@
+---
+import BeforeAfterSlider from './BeforeAfterSlider.astro';
+import { Icon } from 'astro-icon/components';
+import gallery from '../data/gallery.json';
+---
+
+<section id="gallery" class="section bg-[var(--color-surface)]/30">
+  <div class="container-narrow">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="text-[var(--color-accent)] font-medium mb-3 reveal">Галерия</p>
+      <h2 class="heading-section reveal">
+        Преди и <span class="heading-accent">след</span>
+      </h2>
+      <p class="text-[var(--color-muted)] reveal">
+        Влачи разделителя за да видиш разликата. Истински проекти, истински резултати.
+      </p>
+    </div>
+
+    <div class="embla overflow-hidden" data-embla>
+      <div class="embla__container flex gap-6">
+        {gallery.map((item) => (
+          <div class="embla__slide flex-[0_0_100%] md:flex-[0_0_60%] lg:flex-[0_0_45%] reveal">
+            <BeforeAfterSlider before={item.before} after={item.after} alt={item.alt} />
+            <p class="text-center text-sm text-[var(--color-muted)] mt-4">{item.alt}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-4 mt-8">
+      <button
+        class="embla__prev btn-secondary p-3"
+        aria-label="Предишна снимка"
+        data-embla-prev
+      >
+        <Icon name="lucide:chevron-left" class="w-5 h-5" />
+      </button>
+      <button
+        class="embla__next btn-secondary p-3"
+        aria-label="Следваща снимка"
+        data-embla-next
+      >
+        <Icon name="lucide:chevron-right" class="w-5 h-5" />
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+
+  const viewport = document.querySelector<HTMLElement>('[data-embla]');
+  if (viewport) {
+    const embla = EmblaCarousel(viewport, {
+      loop: true,
+      align: 'start',
+      dragFree: false,
+      containScroll: 'trimSnaps',
+      watchDrag: (_, event) => {
+        if (!(event.target instanceof Element)) return true;
+        return !event.target.closest('img-comparison-slider');
+      },
+    });
+
+    document.querySelector('[data-embla-prev]')?.addEventListener('click', () => embla.scrollPrev());
+    document.querySelector('[data-embla-next]')?.addEventListener('click', () => embla.scrollNext());
+  }
+</script>

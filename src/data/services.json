@@ -1,0 +1,38 @@
+[
+  {
+    "id": "external-polish",
+    "icon": "lucide:car",
+    "title": "Външно полиране",
+    "description": "Премахване на драскотини и нанасяне на защитни покрития за дълготраен блясък."
+  },
+  {
+    "id": "interior-clean",
+    "icon": "lucide:armchair",
+    "title": "Пране на седалки и интериор",
+    "description": "Дълбоко почистване с пара на тапицерия, пластмаси и таван."
+  },
+  {
+    "id": "ceramic",
+    "icon": "lucide:shield-check",
+    "title": "Керамично покритие",
+    "description": "Дълготрайна защита срещу UV, мръсотия и драскотини. Гладкост за месеци."
+  },
+  {
+    "id": "wheels",
+    "icon": "lucide:disc-3",
+    "title": "Почистване на джанти и гуми",
+    "description": "Декорирани и защитени джанти, освежена гума."
+  },
+  {
+    "id": "full-detailing",
+    "icon": "lucide:sparkles",
+    "title": "Цялостен пакет (Full Detailing)",
+    "description": "Комбинирана услуга — кола като нова отвън и отвътре."
+  },
+  {
+    "id": "headlights",
+    "icon": "lucide:lightbulb",
+    "title": "Полиране на фарове",
+    "description": "Възстановяване на прозрачност за по-добра видимост и естетика."
+  }
+]

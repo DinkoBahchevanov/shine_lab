@@ -1,0 +1,35 @@
+---
+import PricingCard from './PricingCard.astro';
+import pricing from '../data/pricing.json';
+---
+
+<section id="pricing" class="section">
+  <div class="container-narrow">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="text-[var(--color-accent)] font-medium mb-3 reveal">Ценоразпис</p>
+      <h2 class="heading-section reveal">
+        Прозрачни <span class="heading-accent">пакети</span>
+      </h2>
+      <p class="text-[var(--color-muted)] reveal">
+        Изберете това, което най-добре отговаря на нуждите на вашия автомобил.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+      {pricing.map((pkg) => (
+        <PricingCard
+          name={pkg.name}
+          price={pkg.price}
+          description={pkg.description}
+          features={pkg.features}
+          highlight={pkg.highlight}
+          cta={pkg.cta}
+        />
+      ))}
+    </div>
+
+    <p class="text-center text-sm text-[var(--color-muted)] mt-12 max-w-xl mx-auto reveal">
+      Финалната цена се определя след оглед на автомобила според размера и състоянието му.
+    </p>
+  </div>
+</section>

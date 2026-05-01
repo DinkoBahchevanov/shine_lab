@@ -1,0 +1,83 @@
+---
+import { Icon } from 'astro-icon/components';
+import ContactForm from './ContactForm.astro';
+
+const channels = [
+  {
+    icon: 'lucide:phone',
+    label: 'Телефон',
+    value: '+359 98 882 5799',
+    href: 'tel:+359988825799',
+  },
+  {
+    icon: 'lucide:mail',
+    label: 'Email',
+    value: 'info@shinelab.bg',
+    href: 'mailto:info@shinelab.bg',
+  },
+  {
+    icon: 'lucide:message-circle',
+    label: 'WhatsApp',
+    value: 'Бързо съобщение',
+    href: 'https://wa.me/359988825799',
+  },
+];
+
+const socials = [
+  { icon: 'lucide:instagram', label: 'Instagram', href: 'https://www.instagram.com/shine_lab_bg' },
+  { icon: 'viber', label: 'Viber', href: 'viber://chat?number=+359988825799' },
+];
+---
+
+<section id="contact" class="section">
+  <div class="container-narrow">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="text-[var(--color-accent)] font-medium mb-3 reveal">Контакти</p>
+      <h2 class="heading-section reveal">
+        Ще се <span class="heading-accent">свържем</span>
+      </h2>
+      <p class="text-[var(--color-muted)] reveal">
+        Изпрати запитване или ни намери директно — отговаряме в рамките на час в работно време.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div class="space-y-4">
+        {channels.map((c) => (
+          <a
+            href={c.href}
+            class="card flex items-center gap-4 hover:border-[var(--color-accent)] reveal"
+            target={c.href.startsWith('http') ? '_blank' : undefined}
+            rel={c.href.startsWith('http') ? 'noopener' : undefined}
+          >
+            <div class="w-12 h-12 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center flex-shrink-0">
+              <Icon name={c.icon} class="w-6 h-6 text-[var(--color-accent)]" />
+            </div>
+            <div>
+              <div class="text-sm text-[var(--color-muted)]">{c.label}</div>
+              <div class="font-semibold">{c.value}</div>
+            </div>
+          </a>
+        ))}
+
+        <div class="flex gap-3 pt-4 reveal">
+          {socials.map((s) => (
+            <a
+              href={s.href}
+              target="_blank"
+              rel="noopener"
+              aria-label={s.label}
+              class="w-12 h-12 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+            >
+              <Icon name={s.icon} class="w-5 h-5" />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="reveal">
+        <ContactForm />
+      </div>
+    </div>
+  </div>
+</section>

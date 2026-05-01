@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "before": "/images/Before-After/Bmw-Before.jpg",
+    "after": "/images/Before-After/Bmw-After.jpg",
+    "alt": "Външно полиране",
+    "category": "polish"
+  },
+  {
+    "id": 2,
+    "before": "/images/Before-After/Micra-Before.jpg",
+    "after": "/images/Before-After/Micra-After.jpg",
+    "alt": "Пране на седалки",
+    "category": "interior"
+  },
+  {
+    "id": 3,
+    "before": "/images/Before-After/Toyota-Before.jpg",
+    "after": "/images/Before-After/Toyota-After.jpg",
+    "alt": "Керамично покритие",
+    "category": "ceramic"
+  },
+  {
+    "id": 4,
+    "before": "/images/Before-After/Headlight-1-Before.jpg",
+    "after": "/images/Before-After/Headlight-1-After.jpg",
+    "alt": "Полиране на фарове",
+    "category": "headlights"
+  }
+]
