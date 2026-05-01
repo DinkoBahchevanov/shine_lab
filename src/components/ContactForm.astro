@@ -2,7 +2,7 @@
 import services from '../data/services.json';
 ---
 
-<form id="contact-form" class="space-y-4">
+<form id="contact-form" class="space-y-4" novalidate>
   <div class="grid sm:grid-cols-2 gap-4">
     <div>
       <label for="name" class="block text-sm font-medium mb-2">Име *</label>
@@ -11,16 +11,22 @@ import services from '../data/services.json';
         id="name"
         name="name"
         required
+        autocomplete="name"
         class="w-full px-4 py-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg focus:border-[var(--color-accent)] focus:outline-none transition-colors"
       />
     </div>
     <div>
-      <label for="phone" class="block text-sm font-medium mb-2">Телефон *</label>
+      <label for="phone" class="block text-sm font-medium mb-2">Телефон * <span class="text-[var(--color-muted)] font-normal">(10 цифри)</span></label>
       <input
         type="tel"
         id="phone"
         name="phone"
         required
+        inputmode="numeric"
+        maxlength="10"
+        pattern="[0-9]{10}"
+        autocomplete="tel"
+        placeholder="0888123456"
         class="w-full px-4 py-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg focus:border-[var(--color-accent)] focus:outline-none transition-colors"
       />
     </div>
@@ -51,7 +57,7 @@ import services from '../data/services.json';
     ></textarea>
   </div>
 
-  <button type="submit" class="btn-primary w-full justify-center">
+  <button type="submit" id="submit-btn" class="btn-primary w-full justify-center">
     Изпрати запитване
   </button>
 
@@ -59,21 +65,70 @@ import services from '../data/services.json';
 </form>
 
 <script>
+  // ── Само цифри в телефонното поле ──────────────────────────────
+  const phoneInput = document.getElementById('phone') as HTMLInputElement | null;
+  phoneInput?.addEventListener('input', () => {
+    phoneInput.value = phoneInput.value.replace(/\D/g, '').slice(0, 10);
+  });
+
+  // ── Изпращане ───────────────────────────────────────────────────
+  const WEB3FORMS_KEY = 'PASTE_YOUR_KEY_HERE'; // ← замени с твоя ключ от web3forms.com
+
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const status = document.getElementById('form-status');
+  const status = document.getElementById('form-status') as HTMLElement | null;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!status) return;
+    if (!status || !submitBtn) return;
 
-    status.classList.remove('hidden', 'text-[var(--color-accent)]', 'text-red-400');
-    status.textContent = 'Изпращане...';
+    // Валидация на телефон
+    const phone = phoneInput?.value ?? '';
+    if (!/^[0-9]{10}$/.test(phone)) {
+      showStatus('Телефонният номер трябва да съдържа точно 10 цифри.', false);
+      phoneInput?.focus();
+      return;
+    }
 
-    // TODO: Свържи с реален backend (Cloudflare Worker, Formspree, или Netlify Forms)
-    setTimeout(() => {
-      status.textContent = 'Благодарим! Ще се свържем с теб скоро.';
-      status.classList.add('text-[var(--color-accent)]');
-      form.reset();
-    }, 800);
+    // Блокирай бутона докато се изпраща
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Изпращане...';
+
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: 'Ново запитване — Shine Lab',
+          name: data.get('name'),
+          phone: data.get('phone'),
+          service: data.get('service'),
+          message: data.get('message'),
+        }),
+      });
+
+      const json = await res.json();
+
+      if (json.success) {
+        showStatus('Благодарим! Ще се свържем с теб скоро.', true);
+        form.reset();
+      } else {
+        showStatus('Нещо се обърка. Обади се директно на телефона.', false);
+      }
+    } catch {
+      showStatus('Няма връзка. Провери интернет или се обади директно.', false);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Изпрати запитване';
+    }
   });
+
+  function showStatus(msg: string, success: boolean) {
+    if (!status) return;
+    status.textContent = msg;
+    status.className = `text-sm text-center ${success ? 'text-[var(--color-accent)]' : 'text-red-400'}`;
+  }
 </script>

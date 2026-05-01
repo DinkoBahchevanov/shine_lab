@@ -1,0 +1,47 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section id="process" class="relative section overflow-hidden">
+  <!-- Декоративен accent glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] bg-[var(--color-accent)]/5 blur-[120px] pointer-events-none" aria-hidden="true"></div>
+
+  <div class="container-narrow relative">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <p class="text-[var(--color-accent)] font-medium mb-3 reveal">Виж как работим</p>
+      <h2 class="heading-section reveal">
+        Майсторство в <span class="heading-accent">действие</span>
+      </h2>
+      <p class="text-[var(--color-muted)] reveal">
+        Влагаме страст и прецизност във всеки детайл — от първото забърсване до финалния блясък.
+      </p>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto reveal">
+      <!-- Glow рамка -->
+      <div class="absolute -inset-1 bg-gradient-to-r from-[var(--color-accent)]/30 to-[var(--color-accent)]/10 rounded-3xl blur-xl opacity-50" aria-hidden="true"></div>
+
+      <div class="relative rounded-2xl overflow-hidden border border-[var(--color-border)] shadow-2xl bg-[var(--color-bg)]">
+        <video
+          class="w-full block aspect-video object-cover"
+          autoplay
+          muted
+          loop
+          playsinline
+          controls
+          preload="metadata"
+        >
+          <source src="/videos/Клип-1.mp4" type="video/mp4" />
+          Браузърът ти не поддържа видео.
+        </video>
+      </div>
+    </div>
+
+    <div class="text-center mt-10 reveal">
+      <a href="#contact" class="btn-primary">
+        <Icon name="lucide:sparkles" class="w-5 h-5" />
+        Заяви твоята кола
+      </a>
+    </div>
+  </div>
+</section>
